@@ -1,0 +1,31 @@
+{
+  "name": "mean-stack-with-angular-2-tutorial",
+  "version": "1.0.0",
+  "description": "MEAN Stack with Angular 2",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricardoruizfp/MEAN-Stack-With-Angular-2-Tutorial.git"
+  },
+  "keywords": [
+    "MEAN",
+    "Stack",
+    "Angular",
+    "2",
+    "Application"
+  ],
+  "author": "Ricardo Ruiz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ricardoruizfp/MEAN-Stack-With-Angular-2-Tutorial/issues"
+  },
+  "homepage": "https://github.com/ricardoruizfp/MEAN-Stack-With-Angular-2-Tutorial#readme",
+  "dependencies": {
+    "express": "^4.17.0",
+    "mongoose": "^5.5.9"
+  }
+}
