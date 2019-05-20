@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
         this.validatePassword
       ])],
       confirm: ['', Validators.required]
-    })
+    }, { validator: this.matchingPasswords('password', 'confirm') })
   }
 
   validateEmail(controls) {
@@ -64,6 +64,16 @@ export class RegisterComponent implements OnInit {
       return null;
     } else {
       return { 'validatePassword': true }
+    }
+  }
+
+  matchingPasswords(password, confirm) {
+    return (group: FormGroup) => {
+      if (group.controls[password].value === group.controls[confirm].value) {
+        return null;
+      } else {
+        return {'matchingPasswords': true}
+      }
     }
   }
 

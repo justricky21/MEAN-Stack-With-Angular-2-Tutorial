@@ -29,7 +29,7 @@
       <input type="password" name="password" class="form-control" autocomplete="off" placeholder="*Password" formControlName="password" [ngClass]="{'is-invalid': (form.controls.password.errors && form.controls.password.dirty), 'is-valid': !form.controls.password.errors}">
       <ul class="help-block">
         <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">This field is required</li>
-        <li *ngIf="form.controls.password.errors?.minlength || form.controls.password.errors?.maxlength">Mininum length is 8 characters, maximum length is 35</li>
+        <li *ngIf="form.controls.password.errors?.minlength || form.controls.password.errors?.maxlength && form.controls.password.dirty">Mininum length is 8 characters, maximum length is 35</li>
         <li *ngIf="form.controls.password.errors?.validatePassword && form.controls.password.dirty">Password must have at least one uppercase, lowercase, special character and number</li>
       </ul>
     </div>
@@ -37,9 +37,10 @@
   <div class="form-group">
     <label for="confirm">Confirm Password</label>
     <div>
-      <input type="password" name="confirm" class="form-control" autocomplete="off" placeholder="*Confirm Password" formControlName="confirm" [ngClass]="{'is-invalid': (form.controls.confirm.errors && form.controls.confirm.dirty), 'is-valid': !form.controls.confirm.errors}">
+      <input type="password" name="confirm" class="form-control" autocomplete="off" placeholder="*Confirm Password" formControlName="confirm" [ngClass]="{'is-invalid': (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPasswords && form.controls.confirm.dirty), 'is-valid': (!form.controls.confirm.errors && !form.errors.matchingPasswords)}">
       <ul class="help-block">
         <li *ngIf="form.controls.confirm.errors?.required && form.controls.confirm.dirty">This field is required</li>
+        <li *ngIf="form.errors?.matchingPasswords && form.controls.confirm.dirty">Passwords do not match</li>
       </ul>
     </div>
   </div>
