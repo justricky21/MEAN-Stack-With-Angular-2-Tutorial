@@ -1,8 +1,16 @@
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
-const config = require('./config/database')
-const path = require('path');
+/* ===================
+   Import Node Modules
+==================== */
+
+const express = require('express'); //Fast, unopinionated, minimalist web framework for node
+const app = express(); //Initiate Express Application
+const mongoose = require('mongoose'); //Node Tool for MongoDB
+const router = express.Router();
+const config = require('./config/database') //Mongoose Config
+const path = require('path'); //NodeJS Package for file paths
+const authentication = require('./routes/authentication')(router);
+const bodyParser = require('body-parser')
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.uri, (err) => {
@@ -13,12 +21,21 @@ mongoose.connect(config.uri, (err) => {
   }
 });
 
-app.use(express.static(__dirname + '/client/dist/client'))
+// Provide static directory for frontend
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
+app.use(express.static(__dirname + '/client/dist/client'))
+app.use('/authentication', authentication)
+
+// Connect server to Angular 2 Index.html
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/dist/client/index.html'));
 });
 
+// Start Server: Listen on port 8080
 app.listen(8080, () => {
   console.log('Listening on port 8080')
 });
