@@ -7,7 +7,8 @@
       <input type="text" name="username" class="form-control" autocomplete="off" placeholder="*Username" formControlName="username" [ngClass]="{'is-invalid': (form.controls.username.errors && form.controls.username.dirty), 'is-valid': !form.controls.username.errors}">
       <ul class="help-block">
         <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">This field is required</li>
-        <li *ngIf="form.controls.username.errors?.minlength || form.controls.username.errors?.maxlength">Mininum length is 3 characters, maximum length is 15</li>
+        <li *ngIf="(form.controls.username.errors?.minlength || form.controls.username.errors?.maxlength) && form.controls.username.dirty">Mininum length is 3 characters, maximum length is 15</li>
+        <li *ngIf="form.controls.username.errors?.validateUsername && form.controls.username.dirty">Username must not have any special characters</li>
       </ul>
     </div>
   </div>
@@ -17,7 +18,8 @@
       <input type="text" name="email" class="form-control" autocomplete="off" placeholder="*E-mail" formControlName="email" [ngClass]="{'is-invalid': (form.controls.email.errors && form.controls.email.dirty), 'is-valid': !form.controls.email.errors}">
       <ul class="help-block">
         <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">This field is required</li>
-        <li *ngIf="form.controls.email.errors?.minlength || form.controls.email.errors?.maxlength">Mininum length is 5 characters, maximum length is 30</li>
+        <li *ngIf="(form.controls.email.errors?.minlength || form.controls.email.errors?.maxlength) && form.controls.email.dirty">Mininum length is 5 characters, maximum length is 30</li>
+        <li *ngIf="form.controls.email.errors?.validateEmail && form.controls.email.dirty">This must be a valid e-mail</li>
       </ul>
     </div>
   </div>
@@ -28,6 +30,7 @@
       <ul class="help-block">
         <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">This field is required</li>
         <li *ngIf="form.controls.password.errors?.minlength || form.controls.password.errors?.maxlength">Mininum length is 8 characters, maximum length is 35</li>
+        <li *ngIf="form.controls.password.errors?.validatePassword && form.controls.password.dirty">Password must have at least one uppercase, lowercase, special character and number</li>
       </ul>
     </div>
   </div>
