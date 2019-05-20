@@ -33,11 +33,7 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(8),
         Validators.maxLength(35)
       ])],
-      confirm: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(30)
-      ])]
+      confirm: ['', Validators.required]
     })
   }
 
