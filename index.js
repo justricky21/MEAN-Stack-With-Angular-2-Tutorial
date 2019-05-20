@@ -10,7 +10,7 @@ const config = require('./config/database') //Mongoose Config
 const path = require('path'); //NodeJS Package for file paths
 const authentication = require('./routes/authentication')(router);
 const bodyParser = require('body-parser')
-
+const cors = require('cors');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.uri, (err) => {
@@ -22,6 +22,9 @@ mongoose.connect(config.uri, (err) => {
 });
 
 // Provide static directory for frontend
+app.use(cors({
+  origin: 'http://localhost:4200'
+}))
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
