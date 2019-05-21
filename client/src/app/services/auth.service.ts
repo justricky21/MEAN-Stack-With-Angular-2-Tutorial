@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 })
 export class AuthService {
 
-  domain = "http://localhost:8080";
+  domain = 'http://localhost:8080';
 
   constructor(
     private http: Http
@@ -16,4 +16,13 @@ export class AuthService {
   registerUser(user) {
     return this.http.post(this.domain + '/authentication/register', user).pipe(map(res => res.json()));
   }
+
+  checkUsername(username) {
+    return this.http.get(this.domain + '/authentication/checkUsername/' + username).pipe(map(res => res.json()));
+  }
+
+  checkEmail(email) {
+    return this.http.get(this.domain + '/authentication/checkEmail/' + email).pipe(map(res => res.json()));
+  }
+
 }

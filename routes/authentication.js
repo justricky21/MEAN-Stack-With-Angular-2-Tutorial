@@ -43,7 +43,7 @@ module.exports = (router) => {
                 }
               }
             } else {
-              res.json({ success: true, message: 'Account registered' })
+              res.json({ success: true, message: 'Account registered!' })
             }
           });
         }
@@ -51,7 +51,33 @@ module.exports = (router) => {
     }
   });
 
+  router.get('/checkEmail/:email', (req, res) => {
+    if (!req.params.email) {
+      res.json({ success: false, message: 'E-mail was not provided' });
+    } else {
+      User.findOne({ email: req.params.email }, (err, email) => {
+        if (email) {
+          res.json({ success: false, message: 'Email is already taken' });
+        } else {
+          res.json({ success: true, message: 'Email is available' });
+        }
+      })
+    }
+  });
 
+  router.get('/checkUsername/:username', (req, res) => {
+    if (!req.params.username) {
+      res.json({ success: false, message: 'Username was not provided' });
+    } else {
+      User.findOne({ username: req.params.username }, (err, user) => {
+        if (user) {
+          res.json({ success: false, message: 'Username is already taken' });
+        } else {
+          res.json({ success: true, message: 'Username is available' });
+        }
+      })
+    }
+  });
 
   return router;
 }
