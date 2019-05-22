@@ -10,7 +10,7 @@
   <div class="form-group">
     <label for="username">Username</label>
     <div>
-      <input type="text" name="username" class="form-control" autocomplete="off" placeholder="*Username" formControlName="username" (blur)="checkUsername" [ngClass]="{'is-invalid': (form.controls.username.errors && form.controls.username.dirty) || (!usernameValid && form.controls.username.dirty), 'is-valid': !form.controls.username.errors && usernameValid}">
+      <input type="text" name="username" class="form-control" autocomplete="off" placeholder="*Username" formControlName="username" (blur)="checkUsername()" [ngClass]="{'is-invalid': (form.controls.username.errors && form.controls.username.dirty) || (!usernameValid && form.controls.username.dirty), 'is-valid': !form.controls.username.errors && usernameValid}">
       <ul class="help-block">
         <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">This field is required</li>
         <li *ngIf="(form.controls.username.errors?.minlength || form.controls.username.errors?.maxlength) && form.controls.username.dirty">Mininum length is 3 characters, maximum length is 15</li>
