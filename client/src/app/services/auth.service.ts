@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { map } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,10 @@ export class AuthService {
   user;
   options;
 
+
   constructor(
-    private http: Http
+    private http: Http,
+    private jwtHelper: JwtHelperService
   ) { }
 
   createAuthenticationHeaders() {
@@ -62,6 +65,10 @@ export class AuthService {
   getProfile() {
     this.createAuthenticationHeaders();
     return this.http.get(this.domain + '/authentication/profile/', this.options).pipe(map(res => res.json()));
+  }
+
+  loggedIn() {
+    return this.jwtHelper.isTokenExpired(this.authToken);
   }
 
 }

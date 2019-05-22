@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -12,6 +13,7 @@ import { AuthService } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,16 @@ import { NgFlashMessagesModule } from 'ng-flash-messages';
     HttpModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    NgFlashMessagesModule
+    NgFlashMessagesModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+      return localStorage.getItem('token');
+    },
+        whitelistedDomains: ['http://localhost:8080']
+      }
+    })
   ],
   providers: [
     AuthService
