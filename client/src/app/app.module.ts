@@ -16,6 +16,8 @@ import { NgFlashMessagesModule } from 'ng-flash-messages';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
+import { BlogComponent } from './components/blog/blog.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { NotAuthGuard } from './guards/notAuth.guard';
     DashboardComponent,
     RegisterComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    BlogComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { NotAuthGuard } from './guards/notAuth.guard';
     AppRoutingModule,
     ReactiveFormsModule,
     NgFlashMessagesModule,
+    AngularFontAwesomeModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {

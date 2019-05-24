@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-  <a class="navbar-brand" routerLink="/home">MEAN Stack</a>
 
-  <div class="navbar-collapse">
-    <ul class="navbar-nav mr-auto ml-2">
+  <div class="navbar-collapse container">
+    <a class="navbar-brand" routerLink="/home">MEAN Stack</a>
+    <ul class="navbar-nav mr-auto">
       <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" routerLinkActiveOptions class="nav-item">
         <a class="nav-link" routerLink="/home">Home <span class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <ul class="navbar-nav ml-auto mr-5">
+    <ul class="navbar-nav ml-auto">
       <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item">
         <a class="nav-link" routerLink="/dashboard">Dashboard</a>
       </li>
@@ -15,7 +15,7 @@
         <a class="nav-link" routerLink="/profile">Profile</a>
       </li>
       <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item">
-        <a class="nav-link" href="#">Blog</a>
+        <a class="nav-link" routerLink="/blog">Blog</a>
       </li>
       <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" class="nav-item">
         <a class="nav-link" routerLink="/login">Login</a>
