@@ -68,7 +68,7 @@ export class AuthService {
   }
 
   loggedIn() {
-    return this.jwtHelper.isTokenExpired(this.authToken);
+    return !(this.jwtHelper.isTokenExpired(this.authToken));
   }
 
 }
